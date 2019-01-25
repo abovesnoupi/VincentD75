@@ -1,0 +1,33 @@
+{
+  "name": "vincentd75",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/abovesnoupi/VincentD75.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/abovesnoupi/VincentD75/issues"
+  },
+  "homepage": "https://github.com/abovesnoupi/VincentD75#readme",
+  "dependencies": {
+    "hyperapp": "github:jorgebucaran/hyperapp#V2"
+  },
+  "devDependencies": {
+    "eslint": "^5.12.1",
+    "eslint-config-standard": "^12.0.0",
+    "eslint-plugin-fp": "^2.3.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-node": "^8.0.1",
+    "eslint-plugin-promise": "^4.0.1",
+    "eslint-plugin-standard": "^4.0.0",
+    "hygen": "^1.6.2",
+    "parcel-bundler": "^1.11.0"
+  }
+}
