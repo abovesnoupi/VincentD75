@@ -1,27 +1,69 @@
 import {h} from 'hyperapp'
 
 // Import styles
-import './global.css'
+import 'spectre.css'
 
 // Import actions
-import {SetValue} from './actions'
+import {add, remove, addMessage, setInputVal} from './actions'
+
+
 
 // Root view
 export const view = state => (
   <div class="app">
     <header>
       <div class="container">
-        <h1>{state.title}</h1>
-        <p>{state.description}</p>
+        <h1>{state.count}</h1>
+        <button onClick={add}>+</button>
+        <button onClick={remove}>-</button>
       </div>
     </header>
-    <main>
-      <div class="container">
-        <input type="text" value={state.title} oninput={[SetValue, 'title']} />
-        <input type="text" value={state.description} oninput={[SetValue, 'description']} />
-        <h4>State: </h4>
-        <pre>{JSON.stringify(state, null, 2)}</pre>
+
+    <div class="container">
+      <div class="columns">
+        <div class="column col-3">
+          <ul class="menu">
+            <li class="divider" data-content="LINKS"></li>
+            <li class="menu-item"><a href="#menus">Slack</a></li>
+            <li class="menu-item"><a href="#menus">Hipchat</a></li>
+            <li class="menu-item"><a href="#menus">Skype</a></li>
+          </ul>
+        </div>
+        <div class="column col-9">
+          <div class="panel">
+            <div class="panel-header">
+              <div class="panel-title h6">Comments</div>
+            </div>
+            <div class="panel-body">
+
+            {state.messages.map(message => (
+              <div class="tile">
+                <div class="tile-icon">
+                  <figure class="avatar"><img src="../img/avatar-1.png" alt="Avatar" /></figure>
+                </div>
+                <div class="tile-content">
+                  <p class="tile-title text-bold">{message.user}</p>
+                  <p class="tile-subtitle">{message.content}</p>
+                </div>
+              </div>
+            ))}
+              
+
+
+            </div>
+            <div class="panel-footer">
+              <div class="input-group">
+                <input class="form-input" type="text" value={state.inputVal} oninput={setInputVal} placeholder="Hello" />
+                <button class="btn btn-primary input-group-btn" onclick={addMessage}>Send</button>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-    </main>
+    </div>
+
+    
+    <pre>{JSON.stringify(state, null, 2)}</pre>
+
   </div>
 )
