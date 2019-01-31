@@ -16,7 +16,9 @@
   },
   "homepage": "https://github.com/abovesnoupi/VincentD75#readme",
   "dependencies": {
+    "express": "^4.16.4",
     "hyperapp": "github:jorgebucaran/hyperapp#V2",
+    "socket.io": "^2.2.0",
     "spectre.css": "^0.5.8"
   },
   "devDependencies": {

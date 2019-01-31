@@ -25,7 +25,7 @@ export const addMessage = state => ({
   inputVal: '',
   messages: state.messages.concat({
     id:445,
-    user:"tony asdsadmarde",
+    user:"tony 4",
     content:state.inputVal
   })
 })
