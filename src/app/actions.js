@@ -1,35 +1,34 @@
 // ==================
 // Global actions
 // ==================
+import {Socket} from '../utils'
+import nanoid from 'nanoid'
 
-// Sets the a value to the given key in the state
-export const SetValue = (state, key, ev) => ({
+// Ajoute un message a la liste de messages
+export const HandleNewMessage = (state, message) => ({
   ...state,
-  [key]: ev.target.value
+  messages: state.messages.concat(message)
 })
 
 
-export const add = state => ({
-  ...state,
-  count:  state.count + 1,
-})
-
-
-export const remove = state => ({
-  ...state,
-  count:  state.count - 1
-})
-
-export const addMessage = state => ({
-  ...state,
-  inputVal: '',
-  messages: state.messages.concat({
-    id:445,
-    user:"tony 4",
-    content:state.inputVal
-  })
-})
-
+export const addMessage = state => {
+  const message = {
+    id: nanoid(),
+    user: 'MON NOM',
+    content: state.inputVal
+  }
+  return [
+    {
+      ...state,
+      inputVal: '',
+      messages: state.messages.concat(message)
+    },
+    Socket.emit({
+      event: 'new message',
+      data: message
+    })
+  ]
+}
 
 export const setInputVal = (state, ev) => ({
   ...state,
