@@ -4,21 +4,13 @@ import {h} from 'hyperapp'
 import 'spectre.css'
 
 // Import actions
-import {add, remove, addMessage, setInputVal} from './actions'
+import {addMessage, setInputVal} from './actions'
 
 
 
 // Root view
 export const view = state => (
   <div class="app">
-    <header>
-      <div class="container">
-        <h1>{state.count}</h1>
-        <button onClick={add}>+</button>
-        <button onClick={remove}>-</button>
-      </div>
-    </header>
-
     <div class="container">
       <div class="columns">
         <div class="column col-3">

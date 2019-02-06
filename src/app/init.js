@@ -1,6 +1,5 @@
 // Initial state of the app
 export const init = {
-  count: 0,
   messages: [
     {
       id:1,
