@@ -1,5 +1,15 @@
 // Initial state of the app
 export const init = {
+  rooms: [
+    {
+      id:1,
+      title: "Salle 1",
+    },
+    {
+      id:2,
+      title: "Salle 2",
+    }
+  ],
   messages: [
     {
       id:1,

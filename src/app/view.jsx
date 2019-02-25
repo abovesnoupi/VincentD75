@@ -16,9 +16,9 @@ export const view = state => (
         <div class="column col-3">
           <ul class="menu">
             <li class="divider" data-content="Rooms"></li>
-            <li class="menu-item"><a href="#menus">Slack</a></li>
-            <li class="menu-item"><a href="#menus">Hipchat</a></li>
-            <li class="menu-item"><a href="#menus">Skype</a></li>
+            {state.rooms.map(room => (
+              <li class="menu-item"><a href="#">{room.title}</a></li>
+            ))}
           </ul>
         </div>
         <div class="column col-9">
@@ -55,7 +55,7 @@ export const view = state => (
     </div>
 
     
-    <pre>{JSON.stringify(state, null, 2)}</pre>
+    {/* <pre>{JSON.stringify(state, null, 2)}</pre> */}
 
   </div>
 )
