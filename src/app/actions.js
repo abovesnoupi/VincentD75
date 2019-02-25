@@ -37,8 +37,8 @@ export const addMessage = state => [
       roomId: state.currentRoom,
       message: {
         id: nanoid(),
-        user: 'MON NOM',
-        content: state.inputVal
+        user: state.userName,
+        text: state.inputVal
       }
     }
   })
