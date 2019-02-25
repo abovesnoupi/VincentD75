@@ -4,7 +4,7 @@ import {h} from 'hyperapp'
 import 'spectre.css'
 
 // Import actions
-import {addMessage, setInputVal} from './actions'
+import {addMessage, setInputVal, JoinRoom} from './actions'
 
 
 
@@ -17,14 +17,14 @@ export const view = state => (
           <ul class="menu">
             <li class="divider" data-content="Rooms"></li>
             {state.rooms.map(room => (
-              <li class="menu-item"><a href="#">{room.title}</a></li>
+              <li class="menu-item"><a href="#" onclick={[JoinRoom, room._id]}>{room.title}</a></li>
             ))}
           </ul>
         </div>
         <div class="column col-9">
           <div class="panel">
             <div class="panel-header">
-              <div class="panel-title h6">Comments</div>
+              <div class="panel-title h6">Room: {state.currentRoom}</div>
             </div>
             <div class="panel-body">
 

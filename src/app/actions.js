@@ -52,7 +52,10 @@ export const setInputVal = (state, ev) => ({
 
 
 export const JoinRoom = (state, roomId) => [
-  state,
+  {
+    ...state,
+    currentRoom: roomId
+  },
   Socket.emit({
     event: 'switch room',
     data: {

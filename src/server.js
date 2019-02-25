@@ -15,10 +15,15 @@ io.on("connection", (socket) => {
   // // Envoyer les messages aux client
   // db.view('messages', 'by-created', {descending: true})
   //   .then(messages => socket.emit('send messages', messages))
-    
-  //
-  socket.on('new message', message => {
-    socket.broadcast.emit('new message', message);
+
+
+  socket.on('join room', ({roomToJoin, roomToLeave}) => {
+    socket.leave(roomToLeave);
+    socket.join(roomToJoin);
+  });
+
+  socket.on('new message', ({roomId, message}) => {
+    io.in(roomId).emit('new message', message);
   });
 
 })
