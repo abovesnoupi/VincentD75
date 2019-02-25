@@ -24,7 +24,12 @@ io.on("connection", (socket) => {
     socket.join(roomToJoin);
     
     // Envoyer les messages de la salle au client
-    db.view('messages', 'by-createdAt', {descending: true})
+    db.find({
+      selector: {
+        type: 'message',
+        room: roomToJoin
+      }
+    })
       .then(reply);
   });
 
@@ -32,6 +37,7 @@ io.on("connection", (socket) => {
     db.insert({
       ...message,
       type: 'message',
+      room: roomId,
       createdAt: new Date().toISOString()
     })
       .then(res => {

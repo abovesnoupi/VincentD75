@@ -15,7 +15,7 @@ export const HandleRooms = (state, rooms) => {
 // Insert les messages dans le state
 export const HandleMessages = (state, messages) => ({
   ...state,
-  messages: messages.rows.map(row => row.value)
+  messages: messages.docs
 })
 
 // Ajoute un message a la liste de messages
