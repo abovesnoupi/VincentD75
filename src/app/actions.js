@@ -2,7 +2,6 @@
 // Global actions
 // ==================
 import {Socket} from '../utils'
-import nanoid from 'nanoid'
 
 // Insert les salles dans le state
 export const HandleRooms = (state, rooms) => {
@@ -22,7 +21,7 @@ export const HandleMessages = (state, messages) => ({
 // Ajoute un message a la liste de messages
 export const HandleNewMessage = (state, message) => ({
   ...state,
-  messages: state.messages.concat(message)
+  messages: [message].concat(state.messages)
 })
 
 
@@ -36,7 +35,6 @@ export const addMessage = state => [
     data: {
       roomId: state.currentRoom,
       message: {
-        id: nanoid(),
         user: state.userName,
         text: state.inputVal
       }

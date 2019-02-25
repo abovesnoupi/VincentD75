@@ -29,7 +29,17 @@ io.on("connection", (socket) => {
   });
 
   socket.on('new message', ({roomId, message}) => {
-    io.in(roomId).emit('new message', message);
+    db.insert({
+      ...message,
+      type: 'message',
+      createdAt: new Date().toISOString()
+    })
+      .then(res => {
+        db.get(res.id)
+          .then(message => {
+            io.in(roomId).emit('new message', message);
+          })
+      })
   });
 
 })

@@ -2,6 +2,7 @@ import {h} from 'hyperapp'
 
 // Import styles
 import 'spectre.css'
+import './style.css'
 
 // Import actions
 import {addMessage, setInputVal, JoinRoom} from './actions'
