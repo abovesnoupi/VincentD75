@@ -1,7 +1,7 @@
 
 import io from 'socket.io-client/dist/socket.io.slim'
 
-const socket = io.connect('http://localhost:42069');
+const socket = io.connect('//' + window.location.hostname + ':42069');
 
 
 
