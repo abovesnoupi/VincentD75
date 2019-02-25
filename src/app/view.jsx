@@ -15,7 +15,7 @@ export const view = state => (
       <div class="columns">
         <div class="column col-3">
           <ul class="menu">
-            <li class="divider" data-content="LINKS"></li>
+            <li class="divider" data-content="Rooms"></li>
             <li class="menu-item"><a href="#menus">Slack</a></li>
             <li class="menu-item"><a href="#menus">Hipchat</a></li>
             <li class="menu-item"><a href="#menus">Skype</a></li>

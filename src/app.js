@@ -1,4 +1,4 @@
-import {app} from 'hyperapp'
+import {app} from '../hyperapp'
 import {init} from './app/init'
 import {view} from './app/view'
 import {HandleNewMessage} from './app/actions'
