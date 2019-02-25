@@ -1,6 +1,6 @@
 // Initialize a couchdb development database
 
-const nano = require('nano')('http://admin:password@localhost:5984')
+const nano = require('nano')('http://vincentd75:boston16@localhost:5984')
 
 nano.db.create('vincentd75').then((body) => {
   const db = nano.use('vincentd75');

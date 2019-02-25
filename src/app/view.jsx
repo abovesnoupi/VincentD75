@@ -17,7 +17,7 @@ export const view = state => (
         <h2>CONNECTED!</h2>
       </div>
     ) : (
-      <div>
+      <div class="loginForm"> 
         <h2>NOT CONNECTED!</h2>
         <input class="form-input" type="text" value={state.nameInput} oninput={SetNameInput} placeholder="Pick a name" />
         <button class="btn btn-primary input-group-btn" onclick={SetUsername}>OK</button>
