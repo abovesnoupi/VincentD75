@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "scripts": {
     "start": "parcel src/index.html --open",
+    "start:server": "node src/server.js",
     "build": "rm -rf ./docs && parcel build ./src/index.html --no-source-maps --detailed-report --no-content-hash --out-dir ./docs --public-url /VincentD75/"
   },
   "repository": {
