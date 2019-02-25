@@ -17,9 +17,15 @@ io.on("connection", (socket) => {
   //   .then(messages => socket.emit('send messages', messages))
 
 
-  socket.on('join room', ({roomToJoin, roomToLeave}) => {
+  socket.on('switch room', ({roomToJoin, roomToLeave}, reply) => {
+
+    // Gestion des salles dans socket.io
     socket.leave(roomToLeave);
     socket.join(roomToJoin);
+    
+    // Envoyer les messages de la salle au client
+    db.view('messages', 'by-createdAt', {descending: true})
+      .then(reply);
   });
 
   socket.on('new message', ({roomId, message}) => {

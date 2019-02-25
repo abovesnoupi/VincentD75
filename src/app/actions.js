@@ -16,7 +16,7 @@ export const HandleRooms = (state, rooms) => {
 // Insert les messages dans le state
 export const HandleMessages = (state, messages) => ({
   ...state,
-  messages
+  messages: messages.rows.map(row => row.value)
 })
 
 // Ajoute un message a la liste de messages
@@ -61,6 +61,7 @@ export const JoinRoom = (state, roomId) => [
     data: {
       roomToJoin: roomId,
       roomToLeave: state.currentRoom
-    }
+    },
+    action: HandleMessages
   })
 ]

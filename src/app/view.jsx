@@ -31,11 +31,12 @@ export const view = state => (
             {state.messages.map(message => (
               <div class="tile">
                 <div class="tile-icon">
-                  <figure class="avatar"><img src="../img/avatar-1.png" alt="Avatar" /></figure>
+                  <figure class="avatar">
+                  </figure>
                 </div>
                 <div class="tile-content">
                   <p class="tile-title text-bold">{message.user}</p>
-                  <p class="tile-subtitle">{message.content}</p>
+                  <p class="tile-subtitle">{message.text}</p>
                 </div>
               </div>
             ))}
