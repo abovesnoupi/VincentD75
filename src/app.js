@@ -9,15 +9,18 @@ import {Socket} from './utils'
 app({
   init,
   view,
-  subscriptions: state => [
-    Socket.on({
-      event: 'send rooms',
-      action: HandleRooms
-    }),
-    Socket.on({
-      event: 'new message',
-      action: HandleNewMessage
-    })
-  ],
+  subscriptions: state => {
+    console.log(state)
+    return [
+      Socket.on({
+        event: 'send rooms',
+        action: HandleRooms
+      }),
+      Socket.on({
+        event: 'new message',
+        action: HandleNewMessage
+      })
+    ]
+  },
   container: document.body
 })
