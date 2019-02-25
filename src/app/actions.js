@@ -6,7 +6,7 @@ import nanoid from 'nanoid'
 
 // Insert les salles dans le state
 export const HandleRooms = (state, rooms) => {
-  console.log(rooms)
+  // console.log(rooms)
   return {
     ...state,
     rooms: rooms.rows.map(row => row.value)
@@ -26,26 +26,38 @@ export const HandleNewMessage = (state, message) => ({
 })
 
 
-export const addMessage = state => {
-  const message = {
-    id: nanoid(),
-    user: 'MON NOM',
-    content: state.inputVal
-  }
-  return [
-    {
-      ...state,
-      inputVal: '',
-      messages: state.messages.concat(message)
-    },
-    Socket.emit({
-      event: 'new message',
-      data: message
-    })
-  ]
-}
+export const addMessage = state => [
+  {
+    ...state,
+    inputVal: ''
+  },
+  Socket.emit({
+    event: 'new message',
+    data: {
+      roomId: state.currentRoom,
+      message: {
+        id: nanoid(),
+        user: 'MON NOM',
+        content: state.inputVal
+      }
+    }
+  })
+]
+
 
 export const setInputVal = (state, ev) => ({
   ...state,
   inputVal: ev.target.value
 })
+
+
+export const JoinRoom = (state, roomId) => [
+  state,
+  Socket.emit({
+    event: 'switch room',
+    data: {
+      roomToJoin: roomId,
+      roomToLeave: state.currentRoom
+    }
+  })
+]
