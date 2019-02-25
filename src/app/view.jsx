@@ -5,13 +5,24 @@ import 'spectre.css'
 import './style.css'
 
 // Import actions
-import {addMessage, setInputVal, JoinRoom} from './actions'
+import {addMessage, setInputVal, JoinRoom, SetNameInput, SetUsername} from './actions'
 
 
 
 // Root view
 export const view = state => (
   <div class="app">
+    {state.userName ? (
+      <div>
+        <h2>CONNECTED!</h2>
+      </div>
+    ) : (
+      <div>
+        <h2>NOT CONNECTED!</h2>
+        <input class="form-input" type="text" value={state.nameInput} oninput={SetNameInput} placeholder="Pick a name" />
+        <button class="btn btn-primary input-group-btn" onclick={SetUsername}>OK</button>
+      </div>
+    )}
     <div class="container">
       <div class="columns">
         <div class="column col-3">

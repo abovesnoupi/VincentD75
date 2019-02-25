@@ -43,6 +43,17 @@ export const addMessage = state => [
 ]
 
 
+export const SetUsername = (state, ev) => ({
+  ...state,
+  userName: state.nameInput
+})
+
+export const SetNameInput = (state, ev) => ({
+  ...state,
+  nameInput: ev.target.value
+})
+
+
 export const setInputVal = (state, ev) => ({
   ...state,
   inputVal: ev.target.value
