@@ -1,7 +1,7 @@
 import {app} from '../hyperapp'
 import {init} from './app/init'
 import {view} from './app/view'
-import {HandleNewMessage} from './app/actions'
+import {HandleRooms, HandleNewMessage} from './app/actions'
 
 import {Socket} from './utils'
 
@@ -10,6 +10,10 @@ app({
   init,
   view,
   subscriptions: state => [
+    Socket.on({
+      event: 'send rooms',
+      action: HandleRooms
+    }),
     Socket.on({
       event: 'new message',
       action: HandleNewMessage

@@ -4,6 +4,13 @@
 import {Socket} from '../utils'
 import nanoid from 'nanoid'
 
+// Insert les salles dans le state
+export const HandleRooms = (state, rooms) => ({
+  ...state,
+  rooms
+})
+
+
 // Ajoute un message a la liste de messages
 export const HandleNewMessage = (state, message) => ({
   ...state,
