@@ -1,0 +1,28 @@
+COMMANDE POUR SE CONNECTER SUR LE SSH:
+
+	ssh root@{ip du droplet DigitalOcean}
+
+COMMANDES QUI ONT ÉTÉS UTILISÉES POUR INSTALLER LES DÉPENDENCES NÉCÉSSAIRES:
+
+	1) CouchDB:
+	
+	$ echo "deb https://apache.bintray.com/couchdb-deb bionic main" \
+    	| sudo tee -a /etc/apt/sources.list
+
+
+	$ curl -L https://couchdb.apache.org/repo/bintray-pubkey.asc \
+   	| sudo apt-key add -
+
+	$ sudo apt-get update && sudo apt-get install couchdb
+
+	2) NGINX:
+
+	$ sudo apt update
+	$ sudo apt install nginx
+
+	$ sudo ufw allow 'Nginx HTTP'
+
+
+config par défaut:
+fichier "default" dans /etc/nginx/sites-available/ 
+
