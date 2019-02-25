@@ -1,12 +1,12 @@
 
-const io = require("socket.io");
+const socketIO = require("socket.io");
 const nano = require('nano')('http://localhost:5984');
 
 const db = nano.use('vincentd75');
 
-const sockets = io.listen(42069);
+const io = socketIO.listen(42069);
 
-sockets.on("connection", (socket) => {
+io.on("connection", (socket) => {
 
   // Envoyer les salles aux client
   db.view('rooms', 'by-createdAt', {descending: true})
