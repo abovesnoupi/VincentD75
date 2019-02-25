@@ -23,6 +23,7 @@ io.on("connection", (socket) => {
     socket.leave(roomToLeave);
     socket.join(roomToJoin);
     
+    // TODO: mettre les messages dans le bon ordre
     // Envoyer les messages de la salle au client
     db.find({
       selector: {
