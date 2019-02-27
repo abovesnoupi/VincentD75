@@ -16,5 +16,5 @@ npm run start:server    # Start websockets server
 ```
 
 ```
-npm run build   # Build for github pages
+npm run build   # Build project
 ```
