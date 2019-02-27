@@ -14,6 +14,19 @@ export const view = state => (
   <div class="app">
     {state.userName ? (
       <div class="container">
+        <header class="navbar">
+          <section class="navbar-section">
+            <a href="..." class="navbar-brand mr-2">Spectre.css</a>
+            <a href="..." class="btn btn-link">Docs</a>
+            <a href="..." class="btn btn-link">GitHub</a>
+          </section>
+          <section class="navbar-section">
+            <div class="input-group input-inline">
+            <input class="form-input" type="text" placeholder="search"/>
+            <button class="btn btn-primary input-group-btn">Search</button>
+          </div>
+          </section>
+        </header>
         <div class="columns">
           <div class="column col-3">
             <ul class="menu">
@@ -43,11 +56,9 @@ export const view = state => (
                 </div>
               ))}
                 
-
-
               </div>
               <div class="panel-footer">
-                <div class="input-group">
+                <div class="input-group"><form onSubmit=""></form>
                   <input class="form-input" type="text" value={state.inputVal} oninput={setInputVal} placeholder="Hello" />
                   <button class="btn btn-primary input-group-btn" onclick={addMessage}>Send</button>
                 </div>
@@ -55,6 +66,7 @@ export const view = state => (
             </div>
           </div>
         </div>
+      {/* Fin container */}
       </div>
     ) : (
       <div class="loginForm"> 
