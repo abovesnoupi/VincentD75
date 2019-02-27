@@ -2,7 +2,7 @@ COMMANDE POUR SE CONNECTER SUR LE SSH:
 
 	ssh root@{ip du droplet DigitalOcean}
 
-COMMANDES QUI ONT ÉTÉS UTILISÉES POUR INSTALLER LES DÉPENDENCES NÉCÉSSAIRES:
+COMMANDES QUI ONT ETES UTILISEES POUR INSTALLER LES DEPENDENCES NECESSAIRES:
 
 	1) CouchDB:
 	
@@ -23,6 +23,6 @@ COMMANDES QUI ONT ÉTÉS UTILISÉES POUR INSTALLER LES DÉPENDENCES NÉCÉSSAIRES:
 	$ sudo ufw allow 'Nginx HTTP'
 
 
-config par défaut:
-fichier "default" dans /etc/nginx/sites-available/ 
+config par defaut:
+fichier "default" dans /gietc/nginx/sites-available/ 
 
