@@ -1,6 +1,8 @@
 
 import {Socket} from '../../../utils'
 
+import {HandleRooms} from '../../actions'
+
 
 export const SetNameInput = (state, ev) => ({
   ...state,
@@ -21,9 +23,3 @@ export const HandleLoginForm = (state, ev) => {
     })
   ]
 }
-
-// Insert les salles dans le state
-export const HandleRooms = (state, rooms) => ({
-  ...state,
-  rooms
-})

@@ -52,6 +52,18 @@ io.on("connection", (socket) => {
       .then(message => io.in(roomId).emit('new message', message))
   );
 
+
+  socket.on('new room', (roomName) =>
+    db.insert({
+      type: 'room',
+      title: roomName,
+      createdAt: new Date().toISOString()
+    })
+    .then(res => db.view('rooms', 'by-createdAt', {descending: true}))
+    .then(data => data.rows.map(room => room.value))
+    .then(rooms => io.emit('send rooms', rooms))
+  );
+
 })
 
 console.log('Server started');

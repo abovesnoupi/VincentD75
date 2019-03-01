@@ -1,6 +1,6 @@
 import {h} from 'hyperapp'
 
-import {JoinRoom, SetInputVal, HandleMessageForm} from './actions'
+import {JoinRoom, SetInputVal, HandleMessageForm, HandleRoomForm, SetRoomFormInput, OpenRoomForm} from './actions'
 
 import './style.css'
 
@@ -16,7 +16,6 @@ export const ChatScreen = ({state}) => (
         <a href="#" class="btn btn-link">Docs</a>
         <a href="#" class="btn btn-link">GitHub</a>
       </section>
-      
     </header>
     <div class="columns">
       <div class="column col-3">
@@ -26,6 +25,21 @@ export const ChatScreen = ({state}) => (
           {state.rooms.map(room => (
             <li class="menu-item"><a href="#" onclick={[JoinRoom, room._id]}>{room.title}</a></li>
           ))}
+          {state.roomFormIsOpened ? (
+            <form onsubmit={HandleRoomForm}>
+              <input
+                placeholder="Enter new room name"
+                class="form-input"
+                type="text"
+                value={state.roomFormInput}
+                oninput={SetRoomFormInput}
+                required
+              />
+              <button class="btn btn-primary input-group-btn" type="submit">Send</button>
+            </form>
+          ) : (
+            <button onclick={OpenRoomForm} class="btn btn-primary">Ajouter un salle</button>
+          )}
           <li class="divider" data-content="Users"></li>
           {state.users
             // .filter(user => user.userName !== state.userName)
@@ -34,10 +48,10 @@ export const ChatScreen = ({state}) => (
             <li class="menu-item"><a href="#" onclick={[JoinRoom, getOneToOneRoomName(user.userName, state.userName)]}>{user.userName}</a></li>
           ))}
           <li class="divider" data-content="Other"></li>
-            <li class="menu-item"><a href="#" >Hyperapp</a></li>
-            <li class="menu-item"><a href="#" >Specte.css</a></li>
-            <li class="menu-item"><a href="#" >Socket.io</a></li>
-            <li class="menu-item"><a href="#" >CouchDB</a></li>
+            <li class="menu-item"><a target="_blank" href="https://github.com/jorgebucaran/hyperapp" >Hyperapp</a></li>
+            <li class="menu-item"><a target="_blank" href="https://picturepan2.github.io/spectre/" >Specte.css</a></li>
+            <li class="menu-item"><a target="_blank" href="https://socket.io/" >Socket.io</a></li>
+            <li class="menu-item"><a target="_blank" href="http://couchdb.apache.org/" >CouchDB</a></li>
         </ul>
       </div>
       <div class="column col-9">

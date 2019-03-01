@@ -2,10 +2,18 @@
 export const init = {
   
   nameInput: '',
+  userName: '',
+
+  roomFormIsOpened: false,
+  roomFormInput: '',
 
   currentRoom: '',
+
+  inputVal: '',
+
   rooms: [],
   messages: [],
-  userName: '',
-  inputVal: ''
+  users: [],
+
+  showState: false
 }
