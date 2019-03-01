@@ -16,8 +16,8 @@ export const view = state => (
   <div class="app" menuOpened={state.menuOpened}>
     <div class="hero container hero-sm">
       <div class="wrapper hero-body">
-        <h1>Messagerie en temps réelle</h1>
-        <p>Hyperapp, Socket.io, CouchDB et Specte.css</p>
+        <h1>Messagerie en temps réel</h1>
+        <p>Hyperapp, Socket.io, CouchDB et Spectre.css</p>
       </div>
     </div>
     {
