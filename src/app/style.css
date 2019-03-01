@@ -1,12 +1,3 @@
-/* 
-Inverser l'ordre d'affichage des messages. 
-(du bas vers le haut)
-*/ 
-
-.panel-body {
-  display: flex;
-  flex-direction: column-reverse;
-}
 
 
 
