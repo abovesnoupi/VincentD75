@@ -11,7 +11,7 @@ const scrollDown = el => el.scrollTop = el.scrollHeight
 const getOneToOneRoomName = (a, b) => [a, b].sort().join(' - ')
 
 export const ChatScreen = ({state}) => (
-  <div class="container chat-screen">
+  <div class="container wrapper chat-screen">
     <button class="menu-btn btn btn-primary" onclick={ToggleMenu}><i class="icon icon-menu"></i></button>
     <div class="columns">
       <div class="column col-3 col-md-12 side-menu">
@@ -128,7 +128,8 @@ export const ChatScreen = ({state}) => (
       </div>
     </div>
     
+    {/* State viewer */}
     {state.showState && <pre class="code" data-lang="Show app state"><code>{JSON.stringify(state, null, 2)}</code></pre>}
-  {/* Fin container */}
+
   </div>
 )

@@ -12,6 +12,10 @@ Inverser l'ordre d'affichage des messages.
   flex-direction: column-reverse;
 }
 
+.chat-screen {
+  
+}
+
 .chat-screen .empty {
   height: 100%;
   display: flex;

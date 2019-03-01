@@ -1,16 +1,18 @@
 
-
-
 .app {
+  margin-top: 2rem;
+}
+
+.wrapper {
   max-width: 1024px;
   width: 100%;
-  margin: 6rem auto;
+  margin: 0 auto;
 }
 
 
 @media (max-width: 1024px) {
-  .app {
-    margin: 3.5rem  auto;
+  .wrapper {
+    margin: 0 auto;
   }
 }
 
