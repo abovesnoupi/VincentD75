@@ -16,6 +16,11 @@ export const HandleUsers = (state, users) => ({
 })
 
 
+export const HandleMessages = (state, messages) => ({
+  ...state,
+  messages
+})
+
 
 // Ajoute un message a la liste de messages
 export const HandleNewMessage = (state, message) => ({
@@ -35,7 +40,5 @@ export const Logout = (state, ev) => {
     userName: ''
   }
 }
-
-export const ToggleMenu = (state) => ({...state, menuOpened: !state.menuOpened})
 
 export const ToggleState = (state) => ({...state, showState: !state.showState})

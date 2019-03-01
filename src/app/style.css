@@ -49,9 +49,9 @@
     z-index: 10;
     position: fixed;
     top: 3.5rem;
-    left: 0;
+    left: 1rem;
     width: 80%;
-    transform: translateX(-100%);
+    transform: translateX(-110%);
     transition: transform 200ms ease-out;
   }
   .side-menu .menu {
