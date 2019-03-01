@@ -29,28 +29,6 @@ export const ChatScreen = ({state}) => (
             <li class="menu-item"><a href="#" onclick={[JoinRoom, room._id]}>{room.title}</a></li>
           ))}
 
-          {state.roomFormIsOpened ? (
-            <form onsubmit={HandleRoomForm}>
-              <div class="form-group">
-                <label class="form-label" for="roomFormInput">Room name</label>
-                <input
-                  id="roomFormInput"
-                  name="roomFormInput"
-                  placeholder="Enter new room name"
-                  class="form-input"
-                  type="text"
-                  value={state.roomFormInput}
-                  oninput={SetRoomFormInput}
-                  required
-                />
-              </div>
-              <button class="btn btn-primary input-group-btn" type="submit">Send</button>
-            </form>
-          ) : (
-            <button onclick={OpenRoomForm} class="btn btn-primary">Ajouter un salle</button>
-          )}
-
-
           <li class="divider" data-content="Users"></li>
           {state.users
             .filter(user => user.userName !== state.userName)
@@ -72,6 +50,9 @@ export const ChatScreen = ({state}) => (
           <li class="menu-item"><a target="_blank" href="http://couchdb.apache.org/" >CouchDB</a></li>
 
           <li class="divider"></li>
+          {!state.roomFormIsOpened && (
+            <li class="menu-item"><a href="#" onclick={OpenRoomForm}>Ajouter un salle</a></li>
+          )}
           <li class="menu-item"><a href="#" onclick={ToggleState}>Show State</a></li>
           <li class="menu-item"><a href="#" onclick={Logout}>Logout</a></li>
 
@@ -81,14 +62,14 @@ export const ChatScreen = ({state}) => (
 
       <div class="column col-9 col-md-12">
         {state.currentRoom ? (
-          <div class="panel">
+          <div class="panel" key={state.currentRoom}>
             <div class="panel-header">
               <div class="panel-title h4">{state.currentRoom}</div>
             </div>
             <div class="scroller" onCreate={scrollDown} onUpdate={scrollDown}>
               <div class="panel-body">
                 {state.messages.map(message => (
-                  <div class="tile">
+                  <div class="tile" key={message._id}>
                     <div class="tile-icon">
                       <figure class="avatar">
                         <img src={message.user.avatar} alt="Avatar"/>

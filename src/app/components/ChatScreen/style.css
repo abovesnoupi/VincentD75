@@ -4,7 +4,7 @@ Inverser l'ordre d'affichage des messages.
 */ 
 
 .scroller {
-  max-height: 80vh;
+  max-height: 32rem;
   overflow: auto;
 }
 .panel-body {

@@ -8,6 +8,7 @@ import './style.css'
 // Import components
 import {LoginForm} from './components/LoginForm'
 import {ChatScreen} from './components/ChatScreen'
+import {RoomForm} from './components/RoomForm'
 
 // Root view
 export const view = state => (
@@ -23,5 +24,7 @@ export const view = state => (
       ? <ChatScreen state={state} />
       : <LoginForm state={state} />
     }
+    
+    {state.roomFormIsOpened && <RoomForm state={state} />}
   </div>
 )

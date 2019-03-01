@@ -17,6 +17,7 @@ export const LoginForm = ({state}) => (
           value={state.nameInput}
           oninput={SetNameInput}
           placeholder="Entrez votre nom..."
+          onCreate={el => el.focus()} 
           required
         />
         <button class="btn btn-primary input-group-btn">Connection</button>
