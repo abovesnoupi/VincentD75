@@ -29,6 +29,7 @@ export const HandleNewMessage = (state, message) => ({
 
 export const Logout = (state, ev) => {
   ev.preventDefault()
+  window.localStorage.removeItem('vincentd75-username')
   return {
     ...state,
     userName: ''

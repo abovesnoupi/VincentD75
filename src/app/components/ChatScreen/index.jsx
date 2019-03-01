@@ -11,31 +11,45 @@ const scrollDown = el => el.scrollTop = el.scrollHeight
 const getOneToOneRoomName = (a, b) => [a, b].sort().join('-')
 
 export const ChatScreen = ({state}) => (
-  <div class="container">
+  <div class="container chat-screen">
     <div class="columns">
       <div class="column col-3">
-        <h4>{state.userName}</h4>
-        <a href="#" onclick={Logout}>Logout</a>
         <ul class="menu">
+        
+          <li class="menu-item">
+            <div class="tile tile-centered">
+              <div class="tile-icon"><img class="avatar" src="https://picturepan2.github.io/spectre/img/avatar-2.png" alt="Avatar" /></div>
+              <div class="tile-content">{state.userName}</div>
+            </div>
+          </li>
+
           <li class="divider" data-content="Rooms"></li>
           {state.rooms.map(room => (
             <li class="menu-item"><a href="#" onclick={[JoinRoom, room._id]}>{room.title}</a></li>
           ))}
+
           {state.roomFormIsOpened ? (
             <form onsubmit={HandleRoomForm}>
-              <input
-                placeholder="Enter new room name"
-                class="form-input"
-                type="text"
-                value={state.roomFormInput}
-                oninput={SetRoomFormInput}
-                required
-              />
+              <div class="form-group">
+                <label class="form-label" for="roomFormInput">Room name</label>
+                <input
+                  id="roomFormInput"
+                  name="roomFormInput"
+                  placeholder="Enter new room name"
+                  class="form-input"
+                  type="text"
+                  value={state.roomFormInput}
+                  oninput={SetRoomFormInput}
+                  required
+                />
+              </div>
               <button class="btn btn-primary input-group-btn" type="submit">Send</button>
             </form>
           ) : (
             <button onclick={OpenRoomForm} class="btn btn-primary">Ajouter un salle</button>
           )}
+
+
           <li class="divider" data-content="Users"></li>
           {state.users
             // .filter(user => user.userName !== state.userName)
@@ -44,10 +58,14 @@ export const ChatScreen = ({state}) => (
             <li class="menu-item"><a href="#" onclick={[JoinRoom, getOneToOneRoomName(user.userName, state.userName)]}>{user.userName}</a></li>
           ))}
           <li class="divider" data-content="Other"></li>
-            <li class="menu-item"><a target="_blank" href="https://github.com/jorgebucaran/hyperapp" >Hyperapp</a></li>
-            <li class="menu-item"><a target="_blank" href="https://picturepan2.github.io/spectre/" >Specte.css</a></li>
-            <li class="menu-item"><a target="_blank" href="https://socket.io/" >Socket.io</a></li>
-            <li class="menu-item"><a target="_blank" href="http://couchdb.apache.org/" >CouchDB</a></li>
+          <li class="menu-item"><a target="_blank" href="https://github.com/jorgebucaran/hyperapp" >Hyperapp</a></li>
+          <li class="menu-item"><a target="_blank" href="https://picturepan2.github.io/spectre/" >Specte.css</a></li>
+          <li class="menu-item"><a target="_blank" href="https://socket.io/" >Socket.io</a></li>
+          <li class="menu-item"><a target="_blank" href="http://couchdb.apache.org/" >CouchDB</a></li>
+
+          <li class="divider"></li>
+          <li class="menu-item"><a href="#" onclick={Logout}>Logout</a></li>
+
         </ul>
       </div>
       <div class="column col-9">
@@ -81,6 +99,7 @@ export const ChatScreen = ({state}) => (
                     type="text"
                     value={state.inputVal}
                     oninput={SetInputVal}
+                    required
                   />
                   <button class="btn btn-primary input-group-btn" type="submit">Send</button>
                 </div>
@@ -88,10 +107,17 @@ export const ChatScreen = ({state}) => (
             </div>
           </div>
         ) : (
-          <h2>Choisissez une salle à gauche de l'écran</h2>
+          <div class="empty">
+            <div class="empty-icon"><i class="icon icon-3x icon-message"></i></div>
+            <p class="empty-title h5">Choisissez une salle</p>
+            <p class="empty-subtitle">Cliquez à gauche de l'écran pour vous rejoindre à une salle.</p>
+          </div>
         )}
       </div>
     </div>
+    
+    <button class="btn btn-primary" onclick={(state => ({...state, showState: !state.showState}))}>ToggleState</button>
+    {state.showState && <pre class="code" data-lang="JSON"><code>{JSON.stringify(state, null, 2)}</code></pre>}
   {/* Fin container */}
   </div>
 )

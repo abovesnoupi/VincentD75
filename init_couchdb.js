@@ -31,7 +31,8 @@ nano.db.create('vincentd75').then((body) => {
   // Ajouter des salles de test
   db.insert({
     type: 'room',
-    title: 'test room 1',
+    _id: 'Room A',
+    title: 'Room A',
     createdAt: new Date().toISOString()
   }).then((body) => {
     console.log('room added');
@@ -40,7 +41,8 @@ nano.db.create('vincentd75').then((body) => {
   // Ajouter des salles de test
   db.insert({
     type: 'room',
-    title: 'test room 2',
+    _id: 'Room B',
+    title: 'Room B',
     createdAt: new Date().toISOString()
   }).then((body) => {
     console.log('room added');
