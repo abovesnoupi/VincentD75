@@ -26,35 +26,45 @@ export const ChatScreen = ({state}) => (
         </ul>
       </div>
       <div class="column col-9">
-        <div class="panel">
-          <div class="panel-header">
-            <div class="panel-title h6">Room: {state.currentRoom}</div>
-          </div>
-          <div class="scroller" onCreate={scrollDown} onUpdate={scrollDown}>
-            <div class="panel-body">
-              {state.messages.map(message => (
-                <div class="tile">
-                  <div class="tile-icon">
-                    <figure class="avatar">
-                    </figure>
+        {state.currentRoom ? (
+          <div class="panel">
+            <div class="panel-header">
+              <div class="panel-title h6">Room: {state.currentRoom}</div>
+            </div>
+            <div class="scroller" onCreate={scrollDown} onUpdate={scrollDown}>
+              <div class="panel-body">
+                {state.messages.map(message => (
+                  <div class="tile">
+                    <div class="tile-icon">
+                      <figure class="avatar">
+                      </figure>
+                    </div>
+                    <div class="tile-content">
+                      <p class="tile-title text-bold">{message.user}</p>
+                      <p class="tile-subtitle">{message.text}</p>
+                    </div>
                   </div>
-                  <div class="tile-content">
-                    <p class="tile-title text-bold">{message.user}</p>
-                    <p class="tile-subtitle">{message.text}</p>
-                  </div>
+                ))}
+              </div>
+            </div>
+            <div class="panel-footer">
+              <form onsubmit={HandleMessageForm}>
+                <div class="input-group">
+                  <input
+                    placeholder="Type something..."
+                    class="form-input"
+                    type="text"
+                    value={state.inputVal}
+                    oninput={SetInputVal}
+                  />
+                  <button class="btn btn-primary input-group-btn" type="submit">Send</button>
                 </div>
-              ))}
+              </form>
             </div>
           </div>
-          <div class="panel-footer">
-            <form onsubmit={HandleMessageForm}>
-              <div class="input-group">
-                <input class="form-input" type="text" value={state.inputVal} oninput={SetInputVal} placeholder="Hello" />
-                <button class="btn btn-primary input-group-btn" type="submit">Send</button>
-              </div>
-            </form>
-          </div>
-        </div>
+        ) : (
+          <h2>Choisissez une salle à gauche de l'écran</h2>
+        )}
       </div>
     </div>
   {/* Fin container */}
