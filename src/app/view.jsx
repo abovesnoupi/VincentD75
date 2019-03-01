@@ -16,7 +16,7 @@ export const view = state => (
       ? <ChatScreen state={state} />
       : <LoginForm state={state} />
     }
-    <button class="btn btn-primary" onclick={(state => ({...state, showState: !state.showState}))}>Show state</button>
-    {state.showState && <pre>{JSON.stringify(state, null, 2)}</pre>}
+    <button class="btn btn-primary" onclick={(state => ({...state, showState: !state.showState}))}>ToggleState</button>
+    {state.showState && <pre class="code" data-lang="JSON"><code>{JSON.stringify(state, null, 2)}</code></pre>}
   </div>
 )

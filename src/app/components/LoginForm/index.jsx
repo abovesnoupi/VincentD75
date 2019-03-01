@@ -1,5 +1,7 @@
 import {h} from 'hyperapp'
 
+import './style.css'
+
 import {SetNameInput, HandleLoginForm} from './actions'
 
 export const LoginForm = ({state}) => (

@@ -23,3 +23,15 @@ export const HandleNewMessage = (state, message) => ({
   messages: [message].concat(state.messages)
 })
 
+
+
+
+
+export const Logout = (state, ev) => {
+  ev.preventDefault()
+  return {
+    ...state,
+    userName: ''
+  }
+}
+

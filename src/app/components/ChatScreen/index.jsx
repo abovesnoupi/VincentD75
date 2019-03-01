@@ -1,5 +1,7 @@
 import {h} from 'hyperapp'
 
+import {Logout} from '../../actions'
+
 import {JoinRoom, SetInputVal, HandleMessageForm, HandleRoomForm, SetRoomFormInput, OpenRoomForm} from './actions'
 
 import './style.css'
@@ -10,16 +12,10 @@ const getOneToOneRoomName = (a, b) => [a, b].sort().join('-')
 
 export const ChatScreen = ({state}) => (
   <div class="container">
-    <header class="navbar">
-      <section class="navbar-section">
-        <a href="#" class="navbar-brand mr-2">Spectre.css</a>
-        <a href="#" class="btn btn-link">Docs</a>
-        <a href="#" class="btn btn-link">GitHub</a>
-      </section>
-    </header>
     <div class="columns">
       <div class="column col-3">
         <h4>{state.userName}</h4>
+        <a href="#" onclick={Logout}>Logout</a>
         <ul class="menu">
           <li class="divider" data-content="Rooms"></li>
           {state.rooms.map(room => (

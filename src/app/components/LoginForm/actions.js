@@ -11,15 +11,19 @@ export const SetNameInput = (state, ev) => ({
 
 export const HandleLoginForm = (state, ev) => {
   ev.preventDefault()
-  return [
-    {
-      ...state,
-      userName: state.nameInput
-    },
-    Socket.emit({
-      event: 'login',
-      data: state.nameInput,
-      action: HandleRooms
-    })
-  ]
+  window.localStorage.setItem('vincentd75-username', state.nameInput)
+  return Login(state, state.nameInput)
 }
+
+export const Login = (state, userName) => [
+  {
+    ...state,
+    nameInput: '',
+    userName
+  },
+  Socket.emit({
+    event: 'login',
+    data: userName,
+    action: HandleRooms
+  })
+]
