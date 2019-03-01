@@ -5,6 +5,8 @@ const nano = require('nano')('http://localhost:5984');
 const db = nano.use('vincentd75');
 const io = socketIO.listen(42069);
 
+const seedrandom = require('seedrandom');
+
 const avatars = [
   'https://picturepan2.github.io/spectre/img/avatar-1.png',
   'https://picturepan2.github.io/spectre/img/avatar-2.png',
@@ -13,15 +15,14 @@ const avatars = [
   'https://picturepan2.github.io/spectre/img/avatar-5.png'
 ]
 
-const getRandomAvatar = () => avatars[Math.floor(Math.random() * avatars.length)]
-
+const getAvatar = (userName) => avatars[Math.floor(seedrandom(userName)() * avatars.length)]
 
 io.on("connection", (socket) => {
 
 
   socket.on('login', (userName, reply) => {
 
-    const avatar = getRandomAvatar()
+    const avatar = getAvatar(userName)
 
     socket.userName = userName
     socket.avatar = avatar

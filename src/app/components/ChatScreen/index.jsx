@@ -8,7 +8,7 @@ import './style.css'
 
 const scrollDown = el => el.scrollTop = el.scrollHeight
 
-const getOneToOneRoomName = (a, b) => [a, b].sort().join('-')
+const getOneToOneRoomName = (a, b) => [a, b].sort().join(' - ')
 
 export const ChatScreen = ({state}) => (
   <div class="container chat-screen">
@@ -52,8 +52,7 @@ export const ChatScreen = ({state}) => (
 
           <li class="divider" data-content="Users"></li>
           {state.users
-            // .filter(user => user.userName !== state.userName)
-            // .filter(user => user.userName)
+            .filter(user => user.userName !== state.userName)
             .map(user => (
             <li class="menu-item"><a href="#" onclick={[JoinRoom, getOneToOneRoomName(user.userName, state.userName)]}>{user.userName}</a></li>
           ))}
@@ -95,14 +94,14 @@ export const ChatScreen = ({state}) => (
               <form onsubmit={HandleMessageForm}>
                 <div class="input-group">
                   <input
-                    placeholder="Type something..."
+                    placeholder="Écrire..."
                     class="form-input"
                     type="text"
                     value={state.inputVal}
                     oninput={SetInputVal}
                     required
                   />
-                  <button class="btn btn-primary input-group-btn" type="submit">Send</button>
+                  <button class="btn btn-primary input-group-btn" type="submit">Envoyer</button>
                 </div>
               </form>
             </div>
