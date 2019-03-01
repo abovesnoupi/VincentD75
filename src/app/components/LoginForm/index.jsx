@@ -14,6 +14,7 @@ export const LoginForm = ({state}) => (
       type="text"
       value={state.nameInput}
       oninput={SetNameInput}
+      required
     />
     <button class="btn btn-primary input-group-btn" type="submit">OK</button>
   </form>

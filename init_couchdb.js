@@ -22,7 +22,7 @@ nano.db.create('vincentd75').then((body) => {
     _id: '_design/messages',
     views: {
       'by-createdAt': {
-        map: "function (doc) {\n  if (doc.type !== 'message') {\n    emit(doc._id, doc);\n  }\n}"
+        map: "function (doc) {\n  if (doc.type === 'message') {\n    emit(doc._id, doc);\n  }\n}"
       }
     }
   })

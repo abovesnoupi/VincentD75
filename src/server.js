@@ -6,10 +6,12 @@ const db = nano.use('vincentd75');
 
 const io = socketIO.listen(42069);
 
+
 io.on("connection", (socket) => {
 
   // Envoyer les salles aux client
   db.view('rooms', 'by-createdAt', {descending: true})
+    .then(data => data.rows.map(room => room.value))
     .then(rooms => socket.emit('send rooms', rooms))
 
   // // Envoyer les messages aux client
@@ -23,14 +25,14 @@ io.on("connection", (socket) => {
     socket.leave(roomToLeave);
     socket.join(roomToJoin);
     
-    // TODO: mettre les messages dans le bon ordre
     // Envoyer les messages de la salle au client
-    db.find({
-      selector: {
-        type: 'message',
-        room: roomToJoin
-      }
-    })
+    db.view('messages', 'by-createdAt', {descending: true})
+      .then(data => {
+        console.log(data.rows[1])
+        return data
+      })
+      .then(data => data.rows.map(message => message.value))
+      .then(messages => messages.filter(message => message.room === roomToJoin))
       .then(reply);
   });
 

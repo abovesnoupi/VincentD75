@@ -3,6 +3,10 @@ Inverser l'ordre d'affichage des messages.
 (du bas vers le haut)
 */ 
 
+.scroller {
+  max-height: 80vh;
+  overflow: auto;
+}
 .panel-body {
   display: flex;
   flex-direction: column-reverse;

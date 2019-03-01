@@ -2,6 +2,10 @@ import {h} from 'hyperapp'
 
 import {JoinRoom, SetInputVal, SendMessage} from './actions'
 
+import './style.css'
+
+const scrollDown = el => el.scrollTop = el.scrollHeight
+
 export const ChatScreen = ({state}) => (
   <div class="container">
     <header class="navbar">
@@ -10,12 +14,7 @@ export const ChatScreen = ({state}) => (
         <a href="#" class="btn btn-link">Docs</a>
         <a href="#" class="btn btn-link">GitHub</a>
       </section>
-      <section class="navbar-section">
-        <div class="input-group input-inline">
-        <input class="form-input" type="text" placeholder="search"/>
-        <button class="btn btn-primary input-group-btn">Search</button>
-      </div>
-      </section>
+      
     </header>
     <div class="columns">
       <div class="column col-3">
@@ -31,21 +30,21 @@ export const ChatScreen = ({state}) => (
           <div class="panel-header">
             <div class="panel-title h6">Room: {state.currentRoom}</div>
           </div>
-          <div class="panel-body">
-
-          {state.messages.map(message => (
-            <div class="tile">
-              <div class="tile-icon">
-                <figure class="avatar">
-                </figure>
-              </div>
-              <div class="tile-content">
-                <p class="tile-title text-bold">{message.user}</p>
-                <p class="tile-subtitle">{message.text}</p>
-              </div>
+          <div class="scroller" onCreate={scrollDown} onUpdate={scrollDown}>
+            <div class="panel-body">
+              {state.messages.map(message => (
+                <div class="tile">
+                  <div class="tile-icon">
+                    <figure class="avatar">
+                    </figure>
+                  </div>
+                  <div class="tile-content">
+                    <p class="tile-title text-bold">{message.user}</p>
+                    <p class="tile-subtitle">{message.text}</p>
+                  </div>
+                </div>
+              ))}
             </div>
-          ))}
-            
           </div>
           <div class="panel-footer">
             <div class="input-group"><form onSubmit=""></form>
