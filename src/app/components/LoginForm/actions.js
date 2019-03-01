@@ -1,9 +1,6 @@
 
 import {Socket} from '../../../utils'
 
-import {HandleRooms} from '../../actions'
-
-
 export const SetNameInput = (state, ev) => ({
   ...state,
   nameInput: ev.target.value
@@ -24,6 +21,12 @@ export const Login = (state, userName) => [
   Socket.emit({
     event: 'login',
     data: userName,
-    action: HandleRooms
+    action: HandleLogin
   })
 ]
+
+export const HandleLogin = (state, user) => ({
+  ...state,
+  userName: user.userName,
+  avatar: user.avatar
+})

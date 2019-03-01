@@ -5,6 +5,15 @@ const nano = require('nano')('http://localhost:5984');
 const db = nano.use('vincentd75');
 const io = socketIO.listen(42069);
 
+const avatars = [
+  'https://picturepan2.github.io/spectre/img/avatar-1.png',
+  'https://picturepan2.github.io/spectre/img/avatar-2.png',
+  'https://picturepan2.github.io/spectre/img/avatar-3.png',
+  'https://picturepan2.github.io/spectre/img/avatar-4.png',
+  'https://picturepan2.github.io/spectre/img/avatar-5.png'
+]
+
+const getRandomAvatar = () => avatars[Math.floor(Math.random() * avatars.length)]
 
 
 io.on("connection", (socket) => {
@@ -12,19 +21,28 @@ io.on("connection", (socket) => {
 
   socket.on('login', (userName, reply) => {
 
+    const avatar = getRandomAvatar()
+
     socket.userName = userName
+    socket.avatar = avatar
 
     // Envoyer les salles aux client
     db.view('rooms', 'by-createdAt', {descending: true})
     .then(data => data.rows.map(room => room.value))
-    .then(reply);
+    .then(rooms => socket.emit('send rooms', rooms));
 
     const users = Object.keys(io.sockets.sockets).map(socketId => ({
       userName: io.sockets.sockets[socketId].userName,
-      socketId
+      avatar
     }))
 
     io.emit('send users', users);
+
+
+    reply({
+      userName,
+      avatar
+    })
   })
 
 

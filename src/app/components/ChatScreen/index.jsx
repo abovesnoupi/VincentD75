@@ -18,8 +18,8 @@ export const ChatScreen = ({state}) => (
         
           <li class="menu-item">
             <div class="tile tile-centered">
-              <div class="tile-icon"><img class="avatar" src="https://picturepan2.github.io/spectre/img/avatar-2.png" alt="Avatar" /></div>
-              <div class="tile-content">{state.userName}</div>
+              <div class="tile-icon"><img class="avatar" src={state.avatar} alt="Avatar" /></div>
+              <div class="tile-content h6">{state.userName}</div>
             </div>
           </li>
 
@@ -72,7 +72,7 @@ export const ChatScreen = ({state}) => (
         {state.currentRoom ? (
           <div class="panel">
             <div class="panel-header">
-              <div class="panel-title h6">Room: {state.currentRoom}</div>
+              <div class="panel-title h4">{state.currentRoom}</div>
             </div>
             <div class="scroller" onCreate={scrollDown} onUpdate={scrollDown}>
               <div class="panel-body">
@@ -80,10 +80,11 @@ export const ChatScreen = ({state}) => (
                   <div class="tile">
                     <div class="tile-icon">
                       <figure class="avatar">
+                        <img src={message.user.avatar} alt="Avatar"/>
                       </figure>
                     </div>
                     <div class="tile-content">
-                      <p class="tile-title text-bold">{message.user}</p>
+                      <p class="tile-title text-bold">{message.user.userName}</p>
                       <p class="tile-subtitle">{message.text}</p>
                     </div>
                   </div>

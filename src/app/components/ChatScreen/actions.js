@@ -70,7 +70,10 @@ export const HandleMessageForm = (state, ev) => {
       data: {
         roomId: state.currentRoom,
         message: {
-          user: state.userName,
+          user: {
+            userName: state.userName,
+            avatar: state.avatar
+          },
           text: state.inputVal
         }
       }
