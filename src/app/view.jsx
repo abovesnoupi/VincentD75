@@ -11,7 +11,7 @@ import {ChatScreen} from './components/ChatScreen'
 
 // Root view
 export const view = state => (
-  <div class="app">
+  <div class="app" menuOpened={state.menuOpened}>
     {
       state.userName
       ? <ChatScreen state={state} />

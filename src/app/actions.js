@@ -36,3 +36,6 @@ export const Logout = (state, ev) => {
   }
 }
 
+export const ToggleMenu = (state) => ({...state, menuOpened: !state.menuOpened})
+
+export const ToggleState = (state) => ({...state, showState: !state.showState})

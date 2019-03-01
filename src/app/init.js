@@ -7,7 +7,7 @@ const savedUsername = window.localStorage.getItem('vincentd75-username')
 const initState = {
   
   nameInput: '',
-  
+
   userName: '',
   avatar: '',
 
@@ -22,6 +22,7 @@ const initState = {
   messages: [],
   users: [],
 
+  menuOpened: false,
   showState: false
 }
 

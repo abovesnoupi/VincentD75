@@ -1,6 +1,6 @@
 import {h} from 'hyperapp'
 
-import {Logout} from '../../actions'
+import {Logout, ToggleMenu, ToggleState} from '../../actions'
 
 import {JoinRoom, SetInputVal, HandleMessageForm, HandleRoomForm, SetRoomFormInput, OpenRoomForm} from './actions'
 
@@ -12,8 +12,9 @@ const getOneToOneRoomName = (a, b) => [a, b].sort().join(' - ')
 
 export const ChatScreen = ({state}) => (
   <div class="container chat-screen">
+    <button class="menu-btn btn btn-primary" onclick={ToggleMenu}><i class="icon icon-menu"></i></button>
     <div class="columns">
-      <div class="column col-3">
+      <div class="column col-3 col-md-12 side-menu">
         <ul class="menu">
         
           <li class="menu-item">
@@ -53,6 +54,7 @@ export const ChatScreen = ({state}) => (
           <li class="divider" data-content="Users"></li>
           {state.users
             .filter(user => user.userName !== state.userName)
+            .filter(user => user.userName)
             .map(user => (
             <li class="menu-item">
               <a href="#" onclick={[JoinRoom, getOneToOneRoomName(user.userName, state.userName)]}>
@@ -70,11 +72,14 @@ export const ChatScreen = ({state}) => (
           <li class="menu-item"><a target="_blank" href="http://couchdb.apache.org/" >CouchDB</a></li>
 
           <li class="divider"></li>
+          <li class="menu-item"><a href="#" onclick={ToggleState}>Show State</a></li>
           <li class="menu-item"><a href="#" onclick={Logout}>Logout</a></li>
 
         </ul>
       </div>
-      <div class="column col-9">
+      <div class="overlay" onclick={ToggleMenu}></div>
+
+      <div class="column col-9 col-md-12">
         {state.currentRoom ? (
           <div class="panel">
             <div class="panel-header">
@@ -123,8 +128,7 @@ export const ChatScreen = ({state}) => (
       </div>
     </div>
     
-    <button class="btn btn-primary" onclick={(state => ({...state, showState: !state.showState}))}>ToggleState</button>
-    {state.showState && <pre class="code" data-lang="JSON"><code>{JSON.stringify(state, null, 2)}</code></pre>}
+    {state.showState && <pre class="code" data-lang="Show app state"><code>{JSON.stringify(state, null, 2)}</code></pre>}
   {/* Fin container */}
   </div>
 )
