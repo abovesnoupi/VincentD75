@@ -1,9 +1,9 @@
 
 import {Socket} from '../../../utils'
 
-export const OpenRoomForm = (state) => ({
+export const ToggleRoomForm = (state) => ({
   ...state,
-  roomFormIsOpened: true
+  roomFormIsOpened: !state.roomFormIsOpened
 })
 
 export const SetRoomFormInput = (state, ev) => ({

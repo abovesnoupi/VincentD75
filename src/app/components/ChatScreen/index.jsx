@@ -68,7 +68,7 @@ export const ChatScreen = ({state}) => (
     </div>
     
     {/* State viewer */}
-    {state.showState && <pre class="code" data-lang="Show app state"><code>{JSON.stringify(state, null, 2)}</code></pre>}
+    {state.showState && <pre class="code" data-lang="App state"><code>{JSON.stringify(state, null, 2)}</code></pre>}
 
   </div>
 )

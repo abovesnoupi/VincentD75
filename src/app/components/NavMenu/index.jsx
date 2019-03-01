@@ -6,7 +6,7 @@ import {JoinRoom, ToggleMenu} from './actions'
 
 import {ToggleState, Logout} from '../../actions'
 
-import {OpenRoomForm} from '../RoomForm/actions'
+import {ToggleRoomForm} from '../RoomForm/actions'
 
 export const NavMenu = ({state}) => [
   <button class="menu-btn btn btn-primary" onclick={ToggleMenu}><i class="icon icon-menu"></i></button>,
@@ -45,9 +45,7 @@ export const NavMenu = ({state}) => [
     <li class="menu-item"><a target="_blank" href="http://couchdb.apache.org/" >CouchDB</a></li>
 
     <li class="divider"></li>
-    {!state.roomFormIsOpened && (
-      <li class="menu-item"><a href="#" onclick={OpenRoomForm}>Ajouter un salle</a></li>
-    )}
+    <li class="menu-item"><a href="#" onclick={ToggleRoomForm}>Ajouter un salle</a></li>
     <li class="menu-item"><a href="#" onclick={ToggleState}>Show State</a></li>
     <li class="menu-item"><a href="#" onclick={Logout}>Logout</a></li>
 
