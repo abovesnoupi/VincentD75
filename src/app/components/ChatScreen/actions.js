@@ -1,7 +1,7 @@
 
 import {Socket} from '../../../utils'
 
-import {HandleMessages} from '../../actions'
+
 
 export const JoinRoom = (state, roomId) => [
   {
@@ -46,3 +46,10 @@ export const HandleMessageForm = (state, ev) => {
     })
   ]
 }
+
+
+// Insert les messages dans le state
+export const HandleMessages = (state, messages) => ({
+  ...state,
+  messages
+})

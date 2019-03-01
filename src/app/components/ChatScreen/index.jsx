@@ -6,6 +6,8 @@ import './style.css'
 
 const scrollDown = el => el.scrollTop = el.scrollHeight
 
+const getOneToOneRoomName = (a, b) => [a, b].sort().join('-')
+
 export const ChatScreen = ({state}) => (
   <div class="container">
     <header class="navbar">
@@ -18,10 +20,15 @@ export const ChatScreen = ({state}) => (
     </header>
     <div class="columns">
       <div class="column col-3">
+        <h4>{state.userName}</h4>
         <ul class="menu">
           <li class="divider" data-content="Rooms"></li>
           {state.rooms.map(room => (
             <li class="menu-item"><a href="#" onclick={[JoinRoom, room._id]}>{room.title}</a></li>
+          ))}
+          <li class="divider" data-content="Users"></li>
+          {state.users.map(user => (
+            <li class="menu-item"><a href="#" onclick={[JoinRoom, getOneToOneRoomName(user.userName, state.userName)]}>{user.userName}</a></li>
           ))}
         </ul>
       </div>

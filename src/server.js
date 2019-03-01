@@ -3,16 +3,29 @@ const socketIO = require("socket.io");
 const nano = require('nano')('http://localhost:5984');
 
 const db = nano.use('vincentd75');
-
 const io = socketIO.listen(42069);
+
 
 
 io.on("connection", (socket) => {
 
-  // Envoyer les salles aux client
-  db.view('rooms', 'by-createdAt', {descending: true})
-    .then(data => data.rows.map(room => room.value))
-    .then(rooms => socket.emit('send rooms', rooms))
+
+  socket.on('login', (userName, reply) => {
+
+    socket.userName = userName
+    
+    // Envoyer les salles aux client
+    db.view('rooms', 'by-createdAt', {descending: true})
+      .then(data => data.rows.map(room => room.value))
+      .then(reply);
+
+    const users = Object.keys(io.sockets.sockets).map(socketId => ({
+      userName: io.sockets.sockets[socketId].userName,
+      socketId
+    }))
+
+    io.emit('send users', users);
+  })
 
   // // Envoyer les messages aux client
   // db.view('messages', 'by-created', {descending: true})
@@ -27,10 +40,6 @@ io.on("connection", (socket) => {
     
     // Envoyer les messages de la salle au client
     db.view('messages', 'by-createdAt', {descending: true})
-      .then(data => {
-        console.log(data.rows[1])
-        return data
-      })
       .then(data => data.rows.map(message => message.value))
       .then(messages => messages.filter(message => message.room === roomToJoin))
       .then(reply);
