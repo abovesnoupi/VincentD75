@@ -9,8 +9,6 @@ import {NavMenu} from '../NavMenu'
 
 const scrollDown = el => el.scrollTop = el.scrollHeight
 
-const getOneToOneRoomName = (a, b) => [a, b].sort().join(' - ')
-
 export const ChatScreen = ({state}) => (
   <div class="container wrapper chat-screen">
     <div class="columns">

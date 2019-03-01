@@ -9,6 +9,7 @@ import './style.css'
 import {LoginForm} from './components/LoginForm'
 import {ChatScreen} from './components/ChatScreen'
 import {RoomForm} from './components/RoomForm'
+import {DocModal} from './components/DocModal'
 
 // Root view
 export const view = state => (
@@ -26,5 +27,6 @@ export const view = state => (
     }
     
     {state.roomFormIsOpened && <RoomForm state={state} />}
+    {state.docModalIsOpened && <DocModal state={state} />}
   </div>
 )

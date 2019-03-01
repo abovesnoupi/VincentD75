@@ -5,8 +5,8 @@ import './style.css'
 import {HandleRoomForm, SetRoomFormInput, ToggleRoomForm} from './actions'
 
 export const RoomForm = ({state}) => (
-  <div class="modal modal-sm active">
-    <form onsubmit={HandleRoomForm} class="room-form modal-container" role="document">
+  <div class="room-form modal modal-sm active">
+    <form onsubmit={HandleRoomForm} class="modal-container" role="document">
       <div class="modal-header">
         <a class="btn btn-clear float-right" href="#" onclick={ToggleRoomForm}></a>
         <div class="modal-title h5">Create room</div>

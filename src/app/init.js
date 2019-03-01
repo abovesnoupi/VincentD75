@@ -14,6 +14,8 @@ const initState = {
   roomFormIsOpened: false,
   roomFormInput: '',
 
+  docModalIsOpened: false,
+
   currentRoom: '',
 
   inputVal: '',
