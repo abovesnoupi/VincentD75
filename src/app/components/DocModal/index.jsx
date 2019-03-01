@@ -5,7 +5,7 @@ import './style.css'
 import {ToggleDocModal} from './actions'
 
 export const DocModal = ({state}) => (
-  <div class="doc-modal modal modal-sm active">
+  <div class="doc-modal modal active">
     <div class="modal-container" role="document">
       <div class="modal-header">
         <a class="btn btn-clear float-right" href="#" onclick={ToggleDocModal}></a>
