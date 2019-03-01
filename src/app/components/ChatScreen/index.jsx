@@ -1,6 +1,6 @@
 import {h} from 'hyperapp'
 
-import {JoinRoom, SetInputVal, SendMessage} from './actions'
+import {JoinRoom, SetInputVal, HandleMessageForm} from './actions'
 
 import './style.css'
 
@@ -47,10 +47,12 @@ export const ChatScreen = ({state}) => (
             </div>
           </div>
           <div class="panel-footer">
-            <div class="input-group"><form onSubmit=""></form>
-              <input class="form-input" type="text" value={state.inputVal} oninput={SetInputVal} placeholder="Hello" />
-              <button class="btn btn-primary input-group-btn" onclick={SendMessage}>Send</button>
-            </div>
+            <form onsubmit={HandleMessageForm}>
+              <div class="input-group">
+                <input class="form-input" type="text" value={state.inputVal} oninput={SetInputVal} placeholder="Hello" />
+                <button class="btn btn-primary input-group-btn" type="submit">Send</button>
+              </div>
+            </form>
           </div>
         </div>
       </div>

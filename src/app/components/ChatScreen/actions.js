@@ -27,19 +27,22 @@ export const SetInputVal = (state, ev) => ({
 
 
 
-export const SendMessage = state => [
-  {
-    ...state,
-    inputVal: ''
-  },
-  Socket.emit({
-    event: 'new message',
-    data: {
-      roomId: state.currentRoom,
-      message: {
-        user: state.userName,
-        text: state.inputVal
+export const HandleMessageForm = (state, ev) => {
+  ev.preventDefault()
+  return [
+    {
+      ...state,
+      inputVal: ''
+    },
+    Socket.emit({
+      event: 'new message',
+      data: {
+        roomId: state.currentRoom,
+        message: {
+          user: state.userName,
+          text: state.inputVal
+        }
       }
-    }
-  })
-]
+    })
+  ]
+}
