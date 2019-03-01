@@ -1,6 +1,6 @@
 # Vincent
 
-https://abovesnoupi.github.io/VincentD75/
+VincentD75.me
 
 
 ## Installation: 
