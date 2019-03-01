@@ -54,7 +54,14 @@ export const ChatScreen = ({state}) => (
           {state.users
             .filter(user => user.userName !== state.userName)
             .map(user => (
-            <li class="menu-item"><a href="#" onclick={[JoinRoom, getOneToOneRoomName(user.userName, state.userName)]}>{user.userName}</a></li>
+            <li class="menu-item">
+              <a href="#" onclick={[JoinRoom, getOneToOneRoomName(user.userName, state.userName)]}>
+                <div class="tile tile-centered">
+                  <div class="tile-icon"><img class="avatar" src={user.avatar} alt="Avatar" /></div>
+                  <div class="tile-content h6">{user.userName}</div>
+                </div>
+              </a>
+            </li>
           ))}
           <li class="divider" data-content="Other"></li>
           <li class="menu-item"><a target="_blank" href="https://github.com/jorgebucaran/hyperapp" >Hyperapp</a></li>

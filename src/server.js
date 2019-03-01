@@ -19,11 +19,9 @@ const getAvatar = (userName) => avatars[Math.floor(seedrandom(userName)() * avat
 
 io.on("connection", (socket) => {
 
-
   socket.on('login', (userName, reply) => {
 
     const avatar = getAvatar(userName)
-
     socket.userName = userName
     socket.avatar = avatar
 
@@ -34,7 +32,7 @@ io.on("connection", (socket) => {
 
     const users = Object.keys(io.sockets.sockets).map(socketId => ({
       userName: io.sockets.sockets[socketId].userName,
-      avatar
+      avatar: io.sockets.sockets[socketId].avatar
     }))
 
     io.emit('send users', users);
