@@ -13,7 +13,7 @@ io.on("connection", (socket) => {
   socket.on('login', (userName, reply) => {
 
     socket.userName = userName
-    
+
     // Envoyer les salles aux client
     db.view('rooms', 'by-createdAt', {descending: true})
       .then(data => data.rows.map(room => room.value))
@@ -26,10 +26,6 @@ io.on("connection", (socket) => {
 
     io.emit('send users', users);
   })
-
-  // // Envoyer les messages aux client
-  // db.view('messages', 'by-created', {descending: true})
-  //   .then(messages => socket.emit('send messages', messages))
 
 
   socket.on('switch room', ({roomToJoin, roomToLeave}, reply) => {
@@ -45,20 +41,16 @@ io.on("connection", (socket) => {
       .then(reply);
   });
 
-  socket.on('new message', ({roomId, message}) => {
+  socket.on('new message', ({roomId, message}) =>
     db.insert({
       ...message,
       type: 'message',
       room: roomId,
       createdAt: new Date().toISOString()
     })
-      .then(res => {
-        db.get(res.id)
-          .then(message => {
-            io.in(roomId).emit('new message', message);
-          })
-      })
-  });
+      .then(res => db.get(res.id))
+      .then(message => io.in(roomId).emit('new message', message))
+  );
 
 })
 

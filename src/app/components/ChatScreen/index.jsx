@@ -27,9 +27,17 @@ export const ChatScreen = ({state}) => (
             <li class="menu-item"><a href="#" onclick={[JoinRoom, room._id]}>{room.title}</a></li>
           ))}
           <li class="divider" data-content="Users"></li>
-          {state.users.map(user => (
+          {state.users
+            // .filter(user => user.userName !== state.userName)
+            // .filter(user => user.userName)
+            .map(user => (
             <li class="menu-item"><a href="#" onclick={[JoinRoom, getOneToOneRoomName(user.userName, state.userName)]}>{user.userName}</a></li>
           ))}
+          <li class="divider" data-content="Other"></li>
+            <li class="menu-item"><a href="#" >Hyperapp</a></li>
+            <li class="menu-item"><a href="#" >Specte.css</a></li>
+            <li class="menu-item"><a href="#" >Socket.io</a></li>
+            <li class="menu-item"><a href="#" >CouchDB</a></li>
         </ul>
       </div>
       <div class="column col-9">
