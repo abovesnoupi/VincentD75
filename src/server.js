@@ -16,8 +16,8 @@ io.on("connection", (socket) => {
 
     // Envoyer les salles aux client
     db.view('rooms', 'by-createdAt', {descending: true})
-      .then(data => data.rows.map(room => room.value))
-      .then(reply);
+    .then(data => data.rows.map(room => room.value))
+    .then(reply);
 
     const users = Object.keys(io.sockets.sockets).map(socketId => ({
       userName: io.sockets.sockets[socketId].userName,
@@ -36,9 +36,9 @@ io.on("connection", (socket) => {
     
     // Envoyer les messages de la salle au client
     db.view('messages', 'by-createdAt', {descending: true})
-      .then(data => data.rows.map(message => message.value))
-      .then(messages => messages.filter(message => message.room === roomToJoin))
-      .then(reply);
+    .then(data => data.rows.map(message => message.value))
+    .then(messages => messages.filter(message => message.room === roomToJoin))
+    .then(reply);
   });
 
   socket.on('new message', ({roomId, message}) =>
@@ -48,14 +48,15 @@ io.on("connection", (socket) => {
       room: roomId,
       createdAt: new Date().toISOString()
     })
-      .then(res => db.get(res.id))
-      .then(message => io.in(roomId).emit('new message', message))
+    .then(res => db.get(res.id))
+    .then(message => io.in(roomId).emit('new message', message))
   );
 
 
   socket.on('new room', (roomName) =>
     db.insert({
       type: 'room',
+      _id: roomName,
       title: roomName,
       createdAt: new Date().toISOString()
     })
