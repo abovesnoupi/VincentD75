@@ -25,7 +25,7 @@ export const HandleNewMessage = (state, message) => ({
 })
 
 
-export const addMessage = state => [
+export const SendMessage = state => [
   {
     ...state,
     inputVal: ''
@@ -43,10 +43,13 @@ export const addMessage = state => [
 ]
 
 
-export const SetUsername = (state, ev) => ({
-  ...state,
-  userName: state.nameInput
-})
+export const HandleLoginForm = (state, ev) => {
+  ev.preventDefault()
+  return {
+    ...state,
+    userName: state.nameInput
+  }
+}
 
 export const SetNameInput = (state, ev) => ({
   ...state,
@@ -54,7 +57,7 @@ export const SetNameInput = (state, ev) => ({
 })
 
 
-export const setInputVal = (state, ev) => ({
+export const SetInputVal = (state, ev) => ({
   ...state,
   inputVal: ev.target.value
 })

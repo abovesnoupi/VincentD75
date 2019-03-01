@@ -5,7 +5,7 @@ import 'spectre.css'
 import './style.css'
 
 // Import actions
-import {addMessage, setInputVal, JoinRoom, SetNameInput, SetUsername} from './actions'
+import {SendMessage, SetInputVal, JoinRoom, SetNameInput, HandleLoginForm} from './actions'
 
 
 
@@ -59,8 +59,8 @@ export const view = state => (
               </div>
               <div class="panel-footer">
                 <div class="input-group"><form onSubmit=""></form>
-                  <input class="form-input" type="text" value={state.inputVal} oninput={setInputVal} placeholder="Hello" />
-                  <button class="btn btn-primary input-group-btn" onclick={addMessage}>Send</button>
+                  <input class="form-input" type="text" value={state.inputVal} oninput={SetInputVal} placeholder="Hello" />
+                  <button class="btn btn-primary input-group-btn" onclick={SendMessage}>Send</button>
                 </div>
               </div>
             </div>
@@ -69,11 +69,7 @@ export const view = state => (
       {/* Fin container */}
       </div>
     ) : (
-      <div class="loginForm"> 
-        <h2>Veuillez choisir un nom</h2>
-        <input class="form-input" type="text" value={state.nameInput} oninput={SetNameInput} placeholder="Pick a name" />
-        <button class="btn btn-primary input-group-btn" onclick={SetUsername}>OK</button>
-      </div>
+
     )}
     
 
